@@ -15,7 +15,7 @@
 
 """Utility functions for computing FID/Inception scores."""
 
-import jax
+# import jax
 import numpy as np
 import six
 import tensorflow as tf

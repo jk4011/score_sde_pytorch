@@ -26,7 +26,9 @@ import tensorflow as tf
 import tensorflow_gan as tfgan
 import logging
 # Keep the import below for registering all model definitions
-from models import ddpm, ncsnv2, ncsnpp
+from models import ddpm
+from models import ncsnv2
+# from models import ncsnpp
 import losses
 import sampling
 from models import utils as mutils
