@@ -113,7 +113,13 @@ def get_smld_loss_fn(vesde, train, reduce_mean=False):
     model_fn = mutils.get_model_fn(model, train=train)
     labels = torch.randint(0, vesde.N, (batch.shape[0],), device=batch.device)
     sigmas = smld_sigma_array.to(batch.device)[labels]
-    noise = torch.randn_like(batch) * sigmas[:, None, None, None]
+
+    # noise = torch.randn_like(batch) * sigmas[:, None, None, None]
+    noise = torch.randn_like(batch) * sigmas[:, None, None, None] * torch.sqrt(2)
+    # from levy_stable.levy_stable import LevyStable
+    # levy = LevyStable()
+    # noise = levy.sample(batch.size).reshape(batch.shape) * sigmas[:, None, None, None]
+
     perturbed_data = noise + batch
     score = model_fn(perturbed_data, labels)
     target = -noise / (sigmas ** 2)[:, None, None, None]

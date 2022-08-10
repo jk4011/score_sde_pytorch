@@ -6,6 +6,7 @@ from torch.autograd import Function
 from torch.utils.cpp_extension import load
 
 
+print("upfirdn2d_op start")
 module_path = os.path.dirname(__file__)
 upfirdn2d_op = load(
     "upfirdn2d",
@@ -14,6 +15,7 @@ upfirdn2d_op = load(
         os.path.join(module_path, "upfirdn2d_kernel.cu"),
     ],
 )
+print("upfirdn2d_op done!")
 
 
 class UpFirDn2dBackward(Function):
